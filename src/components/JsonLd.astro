@@ -1,0 +1,9 @@
+---
+// 把任意 schema.org JSON-LD 对象注入页面 <head>。
+// 用法：<JsonLd data={{ "@context": "https://schema.org", "@type": "LocalBusiness", ... }} />
+interface Props {
+  data: Record<string, unknown>;
+}
+const { data } = Astro.props;
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

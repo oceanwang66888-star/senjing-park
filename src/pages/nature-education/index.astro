@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const facts = [
+  { label: '温室面积', value: '约 500 ㎡' },
+  { label: '蝴蝶数量', value: '3000 - 5000 只' },
+  { label: '主要品种', value: '碧凤蝶、玉带凤蝶、菜粉蝶、斐豹蛱蝶等' },
+  { label: '最佳观赏期', value: '春季蝴蝶季（常年恒温可全年观赏）' },
+];
+---
+<BaseLayout
+  title="自然教育 · 蝴蝶主题馆"
+  description="贵州首家蝴蝶主题自然教育温室，3000-5000只蝴蝶常年可观赏，提供蝴蝶探索营、标本课、生命周期课等自然教育课程。"
+>
+  <h1 class="mb-6 font-display text-3xl font-bold text-warm-800 sm:text-4xl">自然教育 · 蝴蝶主题馆</h1>
+
+  <section class="rounded-3lg bg-white p-8 shadow-card">
+    <p class="text-lg leading-relaxed text-warm-600">
+      园区建有贵州首家蝴蝶主题温室，是区别于同质化亲子农场的核心差异化资源。
+      我们做的是自然教育——围绕蝴蝶、森林、生态和动手体验展开，与修文已成熟的「王阳明文化研学」形成互补。
+    </p>
+  </section>
+
+  <section class="mt-8 grid gap-0.5 overflow-hidden rounded-3lg border border-cream-200 shadow-card sm:grid-cols-4">
+    {facts.map((f) => (
+      <div class="bg-white px-6 py-6 text-center">
+        <p class="text-xs font-medium uppercase tracking-wider text-warm-400">{f.label}</p>
+        <p class="mt-2 font-medium text-warm-700">{f.value}</p>
+      </div>
+    ))}
+  </section>
+
+  <div class="mt-8 flex flex-wrap gap-4">
+    <a href="/nature-education/butterfly" class="rounded-full bg-primary-600 px-6 py-3 font-medium text-white shadow-soft transition-all duration-200 hover:bg-primary-700 hover:shadow-soft-md">
+      蝴蝶主题馆详情
+    </a>
+    <a href="/nature-education/courses" class="rounded-full bg-accent px-6 py-3 font-medium text-white shadow-soft transition-all duration-200 hover:bg-accent-600 hover:shadow-soft-md">
+      查看研学课程
+    </a>
+  </div>
+</BaseLayout>

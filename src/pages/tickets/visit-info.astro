@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+---
+<BaseLayout
+  title="交通与开放时间"
+  description={`园区开放时间${site.openingHours}，距贵阳市区${site.travelTimeFromGuiyang}，地址：${site.address}。`}
+>
+  <h1 class="text-3xl font-bold text-primary">交通与开放时间</h1>
+  <ul class="mt-6 space-y-3 rounded-xl bg-white p-6 text-gray-700 shadow">
+    <li><strong>地址：</strong>{site.address}</li>
+    <li><strong>车程：</strong>距贵阳市区{site.travelTimeFromGuiyang}，建议自驾</li>
+    <li><strong>开放时间：</strong>{site.openingHours}</li>
+    <li><strong>停车：</strong>园区入口设有停车场</li>
+  </ul>
+  {/* TODO: 补充公共交通线路（如有班车/公交接驳）、高德/百度地图嵌入组件 */}
+</BaseLayout>

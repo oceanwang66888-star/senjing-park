@@ -1,0 +1,54 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+
+const items = [
+  { name: '森林寻宝', price: '150 元/人', duration: '3 小时', desc: '分组在森林中完成线索任务' },
+  { name: '森系露营团建', price: '280 元/人', duration: '1 天', desc: '帐篷搭建 + 篝火 + 森林游戏' },
+  { name: '围炉煮茶团建版', price: '200 元/人', duration: '3 小时', desc: '团队合作煮茶 + 游戏 + 拍照' },
+  { name: '自然创意赛', price: '180 元/人', duration: '3 小时', desc: '用自然材料搭建创意作品' },
+  { name: '蝴蝶主题定制', price: '250 元/人', duration: '半天', desc: '蝴蝶放飞 + 研学 + 自然教育' },
+  { name: '星空音乐会', price: '380 元/人', duration: '1 晚', desc: '夜晚森林音乐会 + 烧烤 + 篝火' },
+  { name: '两日一夜深度游', price: '680 元/人', duration: '2 天', desc: '团建 + 住宿 + 晚宴 + 次日活动' },
+];
+---
+<BaseLayout
+  title="企业团建"
+  description="贵阳企业团建目的地，森林寻宝、露营团建、围炉煮茶等多种项目，人均 150-680 元，距贵阳市区 50 分钟车程可当日往返。"
+>
+  <h1 class="mb-4 font-display text-3xl font-bold text-warm-800 sm:text-4xl">企业团建</h1>
+  <p class="text-lg leading-relaxed text-warm-500">
+    距贵阳市区{site.travelTimeFromGuiyang}，适合 20-50 人规模的团队当日往返团建，
+    既有纯放松型项目，也有结合自然教育的体验型项目。
+  </p>
+
+  <div class="mt-8 overflow-x-auto rounded-3lg shadow-card">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="bg-primary-700 text-white">
+          <th class="px-5 py-3.5 font-medium">项目</th>
+          <th class="px-5 py-3.5 font-medium">人均</th>
+          <th class="px-5 py-3.5 font-medium">时长</th>
+          <th class="px-5 py-3.5 font-medium">简介</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {items.map((i) => (
+          <tr class="border-b border-cream-200 transition-colors hover:bg-cream-50">
+            <td class="px-5 py-3.5 font-medium text-warm-700">{i.name}</td>
+            <td class="px-5 py-3.5 font-medium text-accent">{i.price}</td>
+            <td class="px-5 py-3.5 text-warm-500">{i.duration}</td>
+            <td class="px-5 py-3.5 text-warm-500">{i.desc}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/team-building/cases"
+    class="mt-8 inline-block rounded-full bg-accent px-6 py-3 font-medium text-white shadow-soft transition-all duration-200 hover:bg-accent-600 hover:shadow-soft-md"
+  >
+    查看企业合作案例
+  </a>
+</BaseLayout>

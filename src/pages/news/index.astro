@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const seasons = [
+  {
+    label: '春季蝴蝶季',
+    months: '3 月 - 5 月',
+    color: 'rose',
+    activities: ['蝴蝶主题温室最佳观赏期', '自然艺术课堂', '植树体验'],
+  },
+  {
+    label: '夏季露营季',
+    months: '6 月 - 8 月',
+    color: 'sky',
+    activities: ['星空露营', '篝火晚会', '夜间昆虫观察'],
+  },
+  {
+    label: '秋季采摘季',
+    months: '9 月 - 11 月',
+    color: 'amber',
+    activities: ['香草采收', '植物标本制作', '秋色摄影'],
+  },
+  {
+    label: '冬季围炉季',
+    months: '12 月 - 2 月',
+    color: 'red',
+    activities: ['围炉煮茶', '年猪饭', '传统手工艺体验'],
+  },
+];
+
+const colorMap = {
+  rose: { border: 'border-rose-300', bg: 'bg-rose-50', title: 'text-rose-700', dot: 'bg-rose-400' },
+  sky: { border: 'border-sky-300', bg: 'bg-sky-50', title: 'text-sky-700', dot: 'bg-sky-400' },
+  amber: { border: 'border-amber-300', bg: 'bg-amber-50', title: 'text-amber-700', dot: 'bg-amber-400' },
+  red: { border: 'border-red-300', bg: 'bg-red-50', title: 'text-red-700', dot: 'bg-red-400' },
+};
+---
+<BaseLayout
+  title="活动资讯"
+  description="贵州森境自然教育公园四季活动日历：春季蝴蝶季（3-5月）、夏季露营季（6-8月）、秋季采摘季（9-11月）、冬季围炉季（12-2月）。"
+>
+  <h1 class="mb-4 font-display text-3xl font-bold text-warm-800 sm:text-4xl">活动资讯</h1>
+  <p class="text-lg leading-relaxed text-warm-500">
+    园区全年按季节推出主题活动，以下为四季活动日历。具体活动日期与报名方式请关注官方公告。
+  </p>
+
+  <section class="mt-8 grid gap-5 sm:grid-cols-2">
+    {seasons.map((s) => {
+      const c = colorMap[s.color];
+      return (
+        <div class={`rounded-2lg border-l-4 ${c.border} ${c.bg} p-6 shadow-soft-sm transition-shadow hover:shadow-soft-md`}>
+          <h2 class={`font-serif text-xl font-bold ${c.title}`}>{s.label}</h2>
+          <p class="mt-1 text-sm font-medium text-warm-400">{s.months}</p>
+          <ul class="mt-4 space-y-2">
+            {s.activities.map((a) => (
+              <li class="flex items-center gap-2.5 text-sm text-warm-600">
+                <span class={`h-1.5 w-1.5 flex-shrink-0 rounded-full ${c.dot}`}></span>
+                {a}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+  </section>
+</BaseLayout>

@@ -1,0 +1,193 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+
+interface BizCard {
+  icon: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+}
+
+const bizCards: BizCard[] = [
+  {
+    icon: 'nature',
+    title: '自然教育',
+    subtitle: '蝴蝶探索 / 研学课程 / 标本制作',
+    desc: '面向亲子家庭与研学团体，提供蝴蝶主题探索营、植物科普课程、昆虫标本制作等动手实践体验。',
+  },
+  {
+    icon: 'team',
+    title: '企业团建',
+    subtitle: '森系团建 / 沉浸体验',
+    desc: '面向企业客户，提供以森林生态为背景的沉浸式团建方案，森林寻宝、露营团建、围炉煮茶等项目。',
+  },
+  {
+    icon: 'wedding',
+    title: '婚庆摄影',
+    subtitle: '森系婚纱 / 蝴蝶外景',
+    desc: '提供蝴蝶温室、花境步道、帐篷婚礼区等森系婚庆摄影场景，与贵阳本地婚庆机构合作。',
+  },
+  {
+    icon: 'cuisine',
+    title: '簸箕宴',
+    subtitle: '特色餐饮 / 壮族文化',
+    desc: '提供壮族传统簸箕宴特色餐饮，一桌一簸箕，主打砂锅土鸡汤、腊味拼盘等贵州本土菜品。',
+  },
+];
+---
+<BaseLayout
+  title="关于我们"
+  description={`${site.brandName}（${site.legalName}）是贵州首家以蝴蝶主题自然教育为核心特色的综合性自然教育公园，位于${site.address}。`}
+>
+  <!-- 主标题区 -->
+  <section class="pb-10">
+    <h1 class="font-display text-4xl font-bold tracking-tight text-warm-900 sm:text-5xl">
+      {site.brandName}
+    </h1>
+    <p class="mt-3 font-sans text-lg text-warm-400">
+      {site.legalName}
+    </p>
+  </section>
+
+  <!-- 品牌定位摘要框 -->
+  <section class="rounded-2lg border-l-2 border-gold bg-cream-100 px-6 py-5">
+    <p class="text-base leading-relaxed text-warm-700">
+      {site.brandName}（{site.legalName}）是贵州首家以蝴蝶主题自然教育为核心特色的综合性自然教育公园，位于{site.address}，占地约400亩，距贵阳市区车程{site.travelTimeFromGuiyang}，可当日往返。
+    </p>
+  </section>
+
+  <!-- 分隔线 -->
+  <hr class="my-12 border-cream-200" />
+
+  <!-- 我们是谁 -->
+  <section>
+    <h2 class="font-serif text-2xl font-bold text-warm-900">我们是谁</h2>
+    <div class="mt-5 space-y-4">
+      <p class="leading-relaxed text-warm-700">
+        园区依托修文县放马坪山地林地的天然生态资源建设，我们选择「自然教育」这条路，源于一个朴素的判断：在城市化进程加速的今天，孩子们距离真实的自然越来越远，而贵州的山地生态恰恰是一座尚未被完整打开的自然课堂。
+      </p>
+      <p class="leading-relaxed text-warm-700">
+        我们刻意选择了一条与修文已有的「王阳明文化研学」赛道不重叠的路径——蝴蝶、森林、生态与动手实践，让亲子家庭、企业团队、研学群体在同一片山林里找到各自的理由留下来。
+      </p>
+    </div>
+  </section>
+
+  <hr class="my-12 border-cream-200" />
+
+  <!-- 核心特色 · 蝴蝶主题温室 -->
+  <section>
+    <h2 class="font-serif text-2xl font-bold text-warm-900">核心特色 · 蝴蝶主题温室</h2>
+    <div class="mt-5 space-y-4">
+      <p class="leading-relaxed text-warm-700">
+        园区建有贵州首家蝴蝶主题温室，常驻展示玉带凤蝶、菜粉蝶、碧凤蝶等多个品种的活体蝴蝶。温室配套种植柑橘、花椒等蝴蝶寄主植物，形成完整的蝴蝶生命周期观察场景，是目前贵州省内稀缺的「能看到蝴蝶飞舞、能观察蝴蝶羽化」的自然教育体验地。
+      </p>
+      <div>
+        <h3 class="mb-2 font-serif text-lg font-semibold text-warm-800">春季蝴蝶季</h3>
+        <p class="leading-relaxed text-warm-700">
+          春季（3—5 月）是蝴蝶活动最旺盛的季节，园区同期举办「蝴蝶季」主题活动，常年均可入园体验。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="my-12 border-cream-200" />
+
+  <!-- 四大业务板块 -->
+  <section>
+    <h2 class="font-serif text-2xl font-bold text-warm-900">四大业务板块</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-2">
+      {
+        bizCards.map((card) => (
+          <div class="rounded-2lg border border-cream-200 bg-white p-6 shadow-soft-sm transition-shadow duration-300 hover:shadow-soft-md">
+            <div class="flex items-start gap-4">
+              <!-- 色块图标 -->
+              {
+                card.icon === 'nature' && (
+                  <span class="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-100 text-primary-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75c-6.627 0-12-2.239-12-5.25s5.373-5.25 12-5.25 12 2.239 12 5.25-5.373 5.25-12 5.25z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c-3.314 0-6-1.12-6-2.625 0-3.75 6-7.5 12 0-1.505 6 0 6 0z" />
+                    </svg>
+                  </span>
+                )
+              }
+              {
+                card.icon === 'team' && (
+                  <span class="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-secondary-100 text-secondary-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                    </svg>
+                  </span>
+                )
+              }
+              {
+                card.icon === 'wedding' && (
+                  <span class="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gold-100 text-gold-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                  </span>
+                )
+              }
+              {
+                card.icon === 'cuisine' && (
+                  <span class="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-accent-100 text-accent-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M12 8.25v6.75m0 0c-4.142 0-7.5 1.678-7.5 3.75 0 2.072 3.358 3.75 7.5 3.75s7.5-1.678 7.5-3.75c0-2.072-3.358-3.75-7.5-3.75z" />
+                    </svg>
+                  </span>
+                )
+              }
+              <div>
+                <h3 class="font-serif text-lg font-bold text-warm-900">{card.title}</h3>
+                <p class="mt-0.5 text-sm font-medium text-warm-400">{card.subtitle}</p>
+                <p class="mt-2 text-sm leading-relaxed text-warm-600">{card.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <hr class="my-12 border-cream-200" />
+
+  <!-- 经营理念 -->
+  <section>
+    <h2 class="font-serif text-2xl font-bold text-warm-900">经营理念</h2>
+    <div class="mt-5 space-y-4">
+      <p class="leading-relaxed text-warm-700">
+        我们相信，好的自然教育不是讲台上的课，而是让孩子真实触摸、闻到、观察一个活着的生态系统。园区以「让城市孩子找回与自然的连接」为核心使命，从蝴蝶温室到林间步道，每一个功能分区都围绕「亲身体验」而非「隔窗观看」来设计。
+      </p>
+      <p class="leading-relaxed text-warm-700">
+        对于企业客户，我们提供的不只是一块草坪，而是一套以森林生态为背景的沉浸式体验方案，让团队建设在真实的自然场景里自然发生。
+      </p>
+    </div>
+  </section>
+
+  <hr class="my-12 border-cream-200" />
+
+  <!-- 园区基本信息 -->
+  <section>
+    <h2 class="font-serif text-2xl font-bold text-warm-900">园区基本信息</h2>
+    <ul class="mt-5 space-y-3">
+      <li class="flex items-start gap-3 text-warm-700">
+        <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded bg-cream-200 text-xs font-bold text-warm-500">A</span>
+        <span>{site.address}</span>
+      </li>
+      <li class="flex items-start gap-3 text-warm-700">
+        <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded bg-cream-200 text-xs font-bold text-warm-500">T</span>
+        <span>距贵阳市区{site.travelTimeFromGuiyang}，可当日往返</span>
+      </li>
+      <li class="flex items-start gap-3 text-warm-700">
+        <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded bg-cream-200 text-xs font-bold text-warm-500">H</span>
+        <span>开放时间：{site.openingHours}</span>
+      </li>
+      <li class="flex items-start gap-3 text-warm-700">
+        <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded bg-cream-200 text-xs font-bold text-warm-500">P</span>
+        <span>电话：{site.phone}</span>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

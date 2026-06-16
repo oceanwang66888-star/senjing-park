@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const packages = [
+  { type: '场地租赁', price: '3000-5000 元/次', target: '婚纱摄影机构' },
+  { type: '场地租赁（高端）', price: '5000-8000 元/次', target: '婚礼策划公司' },
+  { type: '套餐分成', price: '门票 15% + 餐饮 10%', target: '小型摄影工作室' },
+  { type: '联合品牌', price: '专属场景 + 联合推广', target: '高端婚礼策划' },
+];
+---
+<BaseLayout
+  title="婚庆摄影合作报价"
+  description="婚庆摄影场地合作模式：场地租赁 3000-8000 元/次，或门票/餐饮分成模式，适合婚纱摄影机构与婚礼策划公司。"
+>
+  <h1 class="mb-6 font-display text-3xl font-bold text-warm-800 sm:text-4xl">合作模式与报价</h1>
+
+  <div class="overflow-x-auto rounded-3lg shadow-card">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="bg-primary-700 text-white">
+          <th class="px-5 py-3.5 font-medium">合作类型</th>
+          <th class="px-5 py-3.5 font-medium">收费</th>
+          <th class="px-5 py-3.5 font-medium">适合对象</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {packages.map((p) => (
+          <tr class="border-b border-cream-200 transition-colors hover:bg-cream-50">
+            <td class="px-5 py-3.5 font-medium text-warm-700">{p.type}</td>
+            <td class="px-5 py-3.5 font-medium text-accent">{p.price}</td>
+            <td class="px-5 py-3.5 text-warm-500">{p.target}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mt-6 text-sm text-warm-400">
+    具体报价以实地考察与实际洽谈为准，详情请通过「联系我们」页面对接。
+  </p>
+</BaseLayout>

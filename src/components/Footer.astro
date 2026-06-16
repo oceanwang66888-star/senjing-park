@@ -1,0 +1,85 @@
+---
+import { site } from '@/data/site';
+
+const quickLinks = [
+  { href: '/nature-education', label: '自然教育' },
+  { href: '/team-building', label: '企业团建' },
+  { href: '/wedding', label: '婚庆摄影' },
+  { href: '/cuisine', label: '簸箕宴餐饮' },
+  { href: '/park-guide', label: '园区导览' },
+  { href: '/news', label: '活动资讯' },
+  { href: '/faq', label: '常见问题' },
+  { href: '/about', label: '关于我们' },
+];
+---
+<footer class="mt-20 bg-primary-900 text-cream-200">
+  <div class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- 品牌介绍 -->
+      <div class="space-y-4">
+        <h3 class="font-serif text-lg font-semibold text-white">{site.brandName}</h3>
+        <p class="text-sm leading-relaxed text-cream-200/70">
+          贵州首家蝴蝶主题自然教育公园。以自然为师，以森林为课堂，为家庭、企业与学校提供沉浸式自然体验。
+        </p>
+        <p class="text-xs text-cream-200/40">{site.tagline}</p>
+      </div>
+
+      <!-- 快速链接 -->
+      <div>
+        <h4 class="mb-4 font-serif text-base font-semibold text-gold-400">快速链接</h4>
+        <ul class="grid grid-cols-2 gap-2 text-sm">
+          {quickLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-cream-200/70 transition-colors duration-200 hover:text-gold-300"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 联系方式 -->
+      <div>
+        <h4 class="mb-4 font-serif text-base font-semibold text-gold-400">联系方式</h4>
+        <ul class="space-y-3 text-sm text-cream-200/70">
+          <li>地址：{site.address}</li>
+          <li>电话：{site.phone || '待补充'}</li>
+          <li>开放时间：{site.openingHours}</li>
+          <li>车程：贵阳市区{site.travelTimeFromGuiyang}</li>
+          <li>
+            <a href="/contact" class="text-gold-300 transition-colors hover:text-gold-200">
+              在线预约 →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 关注我们 -->
+      <div>
+        <h4 class="mb-4 font-serif text-base font-semibold text-gold-400">关注我们</h4>
+        <ul class="space-y-2 text-sm text-cream-200/70">
+          {site.socialAccounts.douyin !== '待开通' && (
+            <li>抖音：{site.socialAccounts.douyin}</li>
+          )}
+          {site.socialAccounts.xiaohongshu !== '待开通' && (
+            <li>小红书：{site.socialAccounts.xiaohongshu}</li>
+          )}
+          {site.socialAccounts.weixinChannel !== '待开通' && (
+            <li>视频号：{site.socialAccounts.weixinChannel}</li>
+          )}
+        </ul>
+        <p class="mt-3 text-xs text-cream-200/40">社交账号陆续开通中，敬请期待。</p>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="mt-12 border-t border-cream-200/10 pt-8 text-center">
+      <p class="text-xs text-cream-200/30">
+        &copy; {new Date().getFullYear()} {site.brandName} 保留所有权利。
+      </p>
+    </div>
+  </div>
+</footer>

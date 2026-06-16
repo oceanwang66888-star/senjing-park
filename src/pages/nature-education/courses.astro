@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const courses = [
+  { name: '蝴蝶探索营', age: '3-12 岁亲子', duration: '半日', price: '198 元/人', content: '蝴蝶温室参观 + 科普讲解 + 放飞仪式' },
+  { name: '蝴蝶标本课', age: '6 岁以上', duration: '1 小时', price: '128 元/人', content: '制作蝴蝶标本带走（含材料费）' },
+  { name: '蝴蝶生命周期课', age: '小学', duration: '全日', price: '368 元/人', content: '从卵到成虫完整观察 + 实验 + 标本' },
+  { name: '亲子蝴蝶季', age: '一家三口', duration: '半天', price: '398 元/家庭', content: '蝴蝶放飞 + 亲子手作' },
+  { name: '森林探秘', age: '小学 1-3 年级', duration: '3 小时', price: '100 元/人', content: '认识植物、观察鸟类' },
+  { name: '自然手工', age: '小学 4-6 年级', duration: '3 小时', price: '120 元/人', content: '标本制作、植物拓印' },
+  { name: '生态调查', age: '初中', duration: '半天', price: '150 元/人', content: '科学探究、数据记录' },
+];
+
+const productJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: courses.map((c, i) => ({
+    '@type': 'Service',
+    position: i + 1,
+    name: c.name,
+    audience: c.age,
+    offers: { '@type': 'Offer', price: c.price },
+  })),
+};
+---
+<BaseLayout
+  title="自然教育研学课程"
+  description="蝴蝶探索营、标本课、生命周期课、森林探秘等自然教育研学课程，覆盖幼儿园到初中，价格区间 80-400 元/人。"
+  jsonLd={productJsonLd}
+>
+  <h1 class="mb-6 font-display text-3xl font-bold text-warm-800 sm:text-4xl">研学课程清单</h1>
+
+  <div class="overflow-x-auto rounded-3lg shadow-card">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="bg-primary-700 text-white">
+          <th class="px-5 py-3.5 font-medium">课程名称</th>
+          <th class="px-5 py-3.5 font-medium">适合对象</th>
+          <th class="px-5 py-3.5 font-medium">时长</th>
+          <th class="px-5 py-3.5 font-medium">价格</th>
+          <th class="px-5 py-3.5 font-medium">课程内容</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {courses.map((c) => (
+          <tr class="border-b border-cream-200 transition-colors hover:bg-cream-50">
+            <td class="px-5 py-3.5 font-medium text-warm-700">{c.name}</td>
+            <td class="px-5 py-3.5 text-warm-500">{c.age}</td>
+            <td class="px-5 py-3.5 text-warm-500">{c.duration}</td>
+            <td class="px-5 py-3.5 font-medium text-accent">{c.price}</td>
+            <td class="px-5 py-3.5 text-warm-500">{c.content}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</BaseLayout>

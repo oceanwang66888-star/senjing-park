@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const scenes = [
+  { name: '蝴蝶温室', rating: '标志性场景', fit: '婚纱、亲子、情侣写真' },
+  { name: '森林背景', rating: '经典森系', fit: '婚纱、户外婚礼' },
+  { name: '花境步道', rating: '浪漫花径', fit: '婚纱、情侣写真' },
+  { name: '帐篷婚礼区', rating: '户外仪式', fit: '小型婚礼、仪式' },
+];
+---
+<BaseLayout
+  title="婚庆摄影"
+  description="贵州独家蝴蝶温室 + 森系场景婚庆摄影合作地，提供场地租赁与套餐分成多种合作模式。"
+>
+  <h1 class="mb-4 font-display text-3xl font-bold text-warm-800 sm:text-4xl">婚庆摄影合作</h1>
+  <p class="text-lg leading-relaxed text-warm-500">
+    核心优势：贵州独家蝴蝶温室 + 森系背景，区别于贵阳现有所有婚庆摄影场地。
+  </p>
+
+  <div class="mt-8 overflow-x-auto rounded-3lg shadow-card">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="bg-primary-700 text-white">
+          <th class="px-5 py-3.5 font-medium">场景</th>
+          <th class="px-5 py-3.5 font-medium">定位</th>
+          <th class="px-5 py-3.5 font-medium">适用拍摄类型</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {scenes.map((s) => (
+          <tr class="border-b border-cream-200 transition-colors hover:bg-cream-50">
+            <td class="px-5 py-3.5 font-medium text-warm-700">{s.name}</td>
+            <td class="px-5 py-3.5 text-secondary-600">{s.rating}</td>
+            <td class="px-5 py-3.5 text-warm-500">{s.fit}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/wedding/packages"
+    class="mt-8 inline-block rounded-full bg-accent px-6 py-3 font-medium text-white shadow-soft transition-all duration-200 hover:bg-accent-600 hover:shadow-soft-md"
+  >
+    查看合作报价
+  </a>
+</BaseLayout>

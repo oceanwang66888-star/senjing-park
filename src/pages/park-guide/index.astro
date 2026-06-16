@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Zone {
+  name: string;
+  highlight?: boolean;
+  desc: string;
+}
+
+const zones: Zone[] = [
+  { name: '入口大门', desc: '园区主入口，设游客服务中心与咨询台。' },
+  { name: '停车场', desc: '大型地面停车场，可容纳大巴及自驾车辆。' },
+  { name: '接待中心', desc: '团体接待、咨询服务，提供园区导览图。' },
+  { name: '香草园', desc: '种植薰衣草、迷迭香等多种香草，兼顾观赏与科普。' },
+  { name: '民族餐厅', desc: '簸箕宴主题餐厅，容纳 200 人同时用餐。' },
+  { name: '多功能草坪', desc: '开阔草坪区，适合户外活动、婚礼仪式与团建游戏。' },
+  { name: '植物迷宫', desc: '由灌木与绿篱构成的迷宫，适合亲子探险与定向活动。' },
+  { name: '蝴蝶温室', highlight: true, desc: '核心亮点：贵州首家蝴蝶主题温室，常年可观赏多种活体蝴蝶，设有标本展示区与互动体验区。' },
+  { name: '植物科普馆', desc: '展示贵州本土植物标本与生态知识，配有多媒体互动设施。' },
+  { name: '亲子活动区', desc: '专为亲子家庭设计的自然手工、户外游戏与科普互动区域。' },
+  { name: '生态垂钓区', desc: '天然池塘，提供休闲垂钓体验，适合家庭与团建客户。' },
+  { name: '林下游乐场', desc: '林间天然游乐设施，包括秋千、爬网、平衡木等。' },
+  { name: '康养中心', desc: '提供森林康养、冥想、瑜伽等身心疗愈服务。' },
+  { name: '林间步道', desc: '全长约 2 公里的林间徒步路线，沿途设有休憩亭与观景台。' },
+  { name: '帐篷营地区', desc: '指定露营区域，提供帐篷租赁与篝火场地，适合星空露营。' },
+];
+
+const routes = [
+  { label: '亲子路线', color: 'accent', time: '约 2 小时', highlights: '蝴蝶温室 → 植物迷宫 → 亲子活动区 → 林下游乐场 → 簸箕宴午餐' },
+  { label: '研学路线', color: 'primary', time: '约 3 小时', highlights: '蝴蝶温室 → 植物科普馆 → 香草园 → 标本制作课程 → 簸箕宴午餐' },
+  { label: '团建路线', color: 'secondary', time: '4-5 小时', highlights: '多功能草坪破冰 → 植物迷宫定向 → 林间步道徒步 → 帐篷营地篝火晚会' },
+];
+---
+<BaseLayout
+  title="园区导览"
+  description="贵州森境自然教育公园占地广阔，规划 15 大功能分区：蝴蝶温室、植物迷宫、香草园、亲子活动区、帐篷营地区等。建议游览时间 3-5 小时。"
+>
+  <h1 class="mb-4 font-display text-3xl font-bold text-warm-800 sm:text-4xl">园区导览</h1>
+  <p class="text-lg leading-relaxed text-warm-500">
+    园区占地广阔，规划 15 大功能分区，以下为各区域简介。建议游览时间 3-5 小时。
+  </p>
+
+  <!-- 园区导览图 -->
+  <section class="mt-8">
+    <div class="overflow-hidden rounded-3lg shadow-card">
+      <a href="/images/park-map.png" target="_blank" class="block">
+        <img
+          src="/images/park-map.png"
+          alt="贵州森境自然教育公园园区导览图"
+          class="mx-auto w-full max-w-4xl"
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <p class="mt-3 text-center text-sm text-warm-400">
+      点击图片可查看大图 · 15 大功能分区
+    </p>
+  </section>
+
+  <section class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {zones.map((z) => (
+      <div
+        class={`rounded-2lg border p-5 transition-shadow duration-300 ${
+          z.highlight
+            ? 'border-gold-300 bg-gold-100/50 shadow-soft-md'
+            : 'border-cream-200 bg-white shadow-soft-sm hover:shadow-soft-md'
+        }`}
+      >
+        <h3 class={`font-serif text-lg font-bold ${z.highlight ? 'text-primary-700' : 'text-secondary-700'}`}>
+          {z.name}
+          {z.highlight && <span class="ml-2 rounded-full bg-gold-400 px-2.5 py-0.5 text-xs font-medium text-primary-900">核心亮点</span>}
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-warm-500">{z.desc}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="mt-12 rounded-3lg bg-white p-8 shadow-card">
+    <h2 class="font-display text-2xl font-bold text-primary-600">推荐游览路线</h2>
+    <div class="mt-6 grid gap-5 sm:grid-cols-3">
+      {routes.map((r) => (
+        <div class={`rounded-2lg border-l-4 border-${r.color} bg-${r.color}-50/50 p-5`}>
+          <h3 class={`font-serif text-lg font-bold text-${r.color}-700`}>{r.label}</h3>
+          <p class="mt-2 text-sm font-medium text-warm-600">{r.time}</p>
+          <p class="mt-3 text-sm leading-relaxed text-warm-500">{r.highlights}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

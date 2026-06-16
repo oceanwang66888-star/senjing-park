@@ -1,0 +1,82 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const dishes = [
+  { name: '砂锅土鸡汤', method: '文火慢煲 4 小时', feature: '镇店之宝，药食同源' },
+  { name: '腊味拼盘', method: '贵州传统腊制', feature: '本地黑毛猪，柴火熏制' },
+  { name: '从江田鱼', method: '清蒸 / 红烧', feature: '稻田养殖，肉质鲜嫩' },
+  { name: '紫玉米', method: '蒸煮', feature: '本地品种，软糯香甜' },
+  { name: '山药', method: '清炒 / 炖汤', feature: '修文特产，健脾养胃' },
+];
+
+const cuisineJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '簸箕宴特色餐饮',
+  provider: { '@type': 'TouristAttraction', name: '贵州森境自然教育公园' },
+  description:
+    '簸箕宴是壮族传统宴席文化，以竹编簸箕为盛器、芭蕉叶铺底，文火慢煲，体现药食同源饮食理念。客单价 168-388 元/人。',
+  offers: {
+    '@type': 'Offer',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: 168,
+      minPrice: 168,
+      maxPrice: 388,
+      priceCurrency: 'CNY',
+    },
+  },
+};
+---
+<BaseLayout
+  title="簸箕宴特色餐饮"
+  description="簸箕宴：壮族传统宴席文化，竹编簸箕盛器、芭蕉叶铺底、文火慢煲、药食同源。招牌砂锅土鸡汤、腊味拼盘、从江田鱼。"
+  jsonLd={cuisineJsonLd}
+>
+  <h1 class="mb-8 font-display text-3xl font-bold text-warm-800 sm:text-4xl">簸箕宴特色餐饮</h1>
+
+  <section class="rounded-3lg bg-white p-8 shadow-card">
+    <p class="text-lg leading-relaxed text-warm-600">
+      簸箕宴是壮族传统宴席文化，以竹编簸箕为盛器，芭蕉叶铺底，一桌一簸箕，菜品直接铺陈于叶面之上，
+      文火慢煲，体现「药食同源」饮食理念。
+    </p>
+  </section>
+
+  <section class="mt-8 rounded-3lg bg-white p-8 shadow-card">
+    <h2 class="font-serif text-xl font-bold text-primary-600">招牌菜</h2>
+    <div class="mt-5 overflow-x-auto">
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr class="border-b-2 border-primary-200">
+            <th class="px-4 py-3 font-semibold text-primary-600">菜品</th>
+            <th class="px-4 py-3 font-semibold text-primary-600">做法</th>
+            <th class="px-4 py-3 font-semibold text-primary-600">特点</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dishes.map((d) => (
+            <tr class="border-b border-cream-200 transition-colors hover:bg-cream-50">
+              <td class="px-4 py-3.5 font-medium text-warm-700">{d.name}</td>
+              <td class="px-4 py-3.5 text-warm-500">{d.method}</td>
+              <td class="px-4 py-3.5 text-warm-500">{d.feature}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mt-6 rounded-3lg bg-white p-8 shadow-card">
+    <h2 class="font-serif text-xl font-bold text-secondary-600">客单价</h2>
+    <p class="mt-3 font-display text-2xl font-bold text-accent">168 - 388 元/人</p>
+    <p class="mt-2 text-sm text-warm-400">团体用餐请提前预约，具体菜单与价格以当日公示为准。</p>
+  </section>
+
+  <section class="mt-6 rounded-3lg bg-white p-8 shadow-card">
+    <h2 class="font-serif text-xl font-bold text-secondary-600">文化背景</h2>
+    <p class="mt-3 leading-relaxed text-warm-600">
+      簸箕宴起源于壮族节庆聚餐传统，一桌人围坐共享同一簸箕美食，寓意团圆与分享。
+      本园融入贵州本土食材与药食同源理念，打造独具特色的森系餐饮体验。
+    </p>
+  </section>
+</BaseLayout>

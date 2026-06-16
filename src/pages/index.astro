@@ -1,0 +1,200 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+
+const values = [
+  {
+    title: '蝴蝶主题',
+    desc: '贵州首家蝴蝶主题温室，常年可见数千只活体蝴蝶，提供沉浸式自然教育体验',
+    color: 'from-emerald-600 to-primary-500',
+  },
+  {
+    title: '森系体验',
+    desc: '15大功能分区，林间步道、植物迷宫、帐篷营地，在城市边缘拥抱原始森林',
+    color: 'from-amber-600 to-secondary-500',
+  },
+  {
+    title: '药食同源',
+    desc: '簸箕宴传承壮族传统饮食文化，文火慢煲、药食同源，品味舌尖上的自然',
+    color: 'from-orange-500 to-accent',
+  },
+];
+
+const businesses = [
+  {
+    href: '/nature-education',
+    label: '自然教育',
+    desc: '蝴蝶探索营、标本课程、森林探秘，覆盖3-12岁亲子家庭与学校研学团体',
+    bg: 'bg-gradient-to-br from-primary-50 to-primary-100',
+    icon: 'bg-primary-600',
+  },
+  {
+    href: '/team-building',
+    label: '企业团建',
+    desc: '森林寻宝、星空音乐会、围炉煮茶，150-680元/人，贵阳当日往返',
+    bg: 'bg-gradient-to-br from-secondary-50 to-secondary-100',
+    icon: 'bg-secondary-600',
+  },
+  {
+    href: '/wedding',
+    label: '婚庆摄影',
+    desc: '贵州独家蝴蝶温室婚纱场景，森系婚礼、户外仪式、情侣写真',
+    bg: 'bg-gradient-to-br from-cream-100 to-cream-200',
+    icon: 'bg-amber-600',
+  },
+  {
+    href: '/cuisine',
+    label: '簸箕宴餐饮',
+    desc: '壮族传统宴席，竹编簸箕、芭蕉叶铺底，168-388元/人',
+    bg: 'bg-gradient-to-br from-accent-50 to-accent-100',
+    icon: 'bg-accent',
+  },
+];
+
+const stats = [
+  { value: '50分钟', label: '距贵阳市区' },
+  { value: '15个', label: '功能分区' },
+  { value: '四季', label: '全年运营' },
+  { value: '免费', label: '入园无需门票' },
+];
+---
+<BaseLayout
+  title="首页"
+  description={`${site.brandName}：${site.tagline}，位于${site.address}，距贵阳市区${site.travelTimeFromGuiyang}。免费入园，提供自然教育、企业团建、婚庆摄影、簸箕宴餐饮等体验。`}
+>
+  <!-- Hero -->
+  <section class="relative -mx-5 -mt-12 mb-0 overflow-hidden lg:-mx-8">
+    <div class="relative flex min-h-[70vh] items-center justify-center bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 px-5 py-24 lg:px-8">
+      <!-- 装饰纹理 -->
+      <div class="pointer-events-none absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, rgba(212,175,55,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,107,53,0.2) 0%, transparent 40%);"></div>
+
+      <div class="relative z-10 mx-auto max-w-3xl text-center">
+        <p class="mb-3 font-sans text-sm tracking-[0.3em] text-gold-300 uppercase">
+          Guizhou Senjing Nature Education Park
+        </p>
+        <h1 class="font-display text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+          贵州森境自然教育公园
+        </h1>
+        <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-cream-200/80 sm:text-xl">
+          {site.tagline} · 森系企业团建 · 婚庆摄影 · 簸箕宴特色餐饮
+        </p>
+        <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <a
+            href="/park-guide"
+            class="rounded-full bg-gold-400 px-8 py-3.5 font-medium text-primary-900 shadow-soft-md transition-all duration-300 hover:bg-gold-300 hover:shadow-soft-lg"
+          >
+            探索园区
+          </a>
+          <a
+            href="/contact"
+            class="rounded-full border-2 border-cream-200/30 px-8 py-3.5 font-medium text-cream-100 transition-all duration-300 hover:border-cream-100 hover:bg-cream-100/10"
+          >
+            预约咨询
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌价值主张 -->
+  <section class="mt-16">
+    <div class="mb-10 text-center">
+      <h2 class="font-display text-3xl font-bold text-warm-800 sm:text-4xl">
+        自然 · 教育 · 生活
+      </h2>
+      <p class="mt-3 text-warm-500">在蝴蝶飞舞的森林里，重新定义城市人的自然体验</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-3">
+      {values.map((v) => (
+        <div class="group relative overflow-hidden rounded-3lg bg-white p-8 shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+          <div class={`mb-5 inline-block h-12 w-12 rounded-xl bg-gradient-to-br ${v.color} opacity-90`}></div>
+          <h3 class="font-serif text-xl font-bold text-warm-800">{v.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-warm-500">{v.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 四大业务板块 -->
+  <section class="mt-20">
+    <div class="mb-10 text-center">
+      <h2 class="font-display text-3xl font-bold text-warm-800 sm:text-4xl">
+        核心体验
+      </h2>
+      <p class="mt-3 text-warm-500">四大业务板块，满足不同群体的自然探索需求</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {businesses.map((b) => (
+        <a
+          href={b.href}
+          class={`group relative overflow-hidden rounded-3lg ${b.bg} p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover`}
+        >
+          <div class={`mb-4 h-2 w-10 rounded-full ${b.icon}`}></div>
+          <h3 class="font-serif text-xl font-bold text-warm-800">{b.label}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-warm-500">{b.desc}</p>
+          <span class="mt-4 inline-block text-sm font-medium text-primary-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            了解更多 →
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 数字亮点条 -->
+  <section class="mt-20">
+    <div class="grid grid-cols-2 gap-px overflow-hidden rounded-3lg bg-cream-200 sm:grid-cols-4">
+      {stats.map((s) => (
+        <div class="bg-white px-6 py-8 text-center">
+          <p class="font-display text-3xl font-bold text-primary-600 sm:text-4xl">{s.value}</p>
+          <p class="mt-2 text-sm text-warm-400">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 地址信息 -->
+  <section class="mt-16 rounded-3lg bg-white p-8 shadow-card sm:p-10">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <p class="text-xs font-medium tracking-wider text-warm-400 uppercase">地址</p>
+        <p class="mt-1 font-medium text-warm-700">{site.address}</p>
+      </div>
+      <div>
+        <p class="text-xs font-medium tracking-wider text-warm-400 uppercase">车程</p>
+        <p class="mt-1 font-medium text-warm-700">贵阳市区{site.travelTimeFromGuiyang}</p>
+      </div>
+      <div>
+        <p class="text-xs font-medium tracking-wider text-warm-400 uppercase">开放时间</p>
+        <p class="mt-1 font-medium text-warm-700">{site.openingHours}</p>
+      </div>
+      <div>
+        <p class="text-xs font-medium tracking-wider text-warm-400 uppercase">客服电话</p>
+        <p class="mt-1 font-medium text-warm-700">{site.phone || '待补充'}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 CTA -->
+  <section class="mt-16 rounded-3lg bg-gradient-to-br from-primary-700 to-primary-900 px-8 py-16 text-center shadow-soft-lg sm:px-12">
+    <h2 class="font-display text-3xl font-bold text-white sm:text-4xl">
+      在蝴蝶飞舞的森林里，开启你的自然之旅
+    </h2>
+    <p class="mx-auto mt-4 max-w-lg text-lg text-cream-200/80">
+      免费入园，团体活动请提前预约。从贵阳市区出发仅需 50 分钟。
+    </p>
+    <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <a
+        href="/contact"
+        class="rounded-full bg-gold-400 px-8 py-3.5 font-medium text-primary-900 shadow-soft-md transition-all duration-300 hover:bg-gold-300 hover:shadow-soft-lg"
+      >
+        立即预约
+      </a>
+      <a
+        href="/faq"
+        class="rounded-full border-2 border-cream-200/25 px-8 py-3.5 font-medium text-cream-100 transition-all duration-300 hover:border-cream-100 hover:bg-cream-100/10"
+      >
+        常见问题
+      </a>
+    </div>
+  </section>
+</BaseLayout>

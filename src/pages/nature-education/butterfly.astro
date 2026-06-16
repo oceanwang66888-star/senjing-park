@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const species = [
+  { name: '碧凤蝶 / 玉带凤蝶', family: '凤蝶科', note: '视觉震撼，拍照打卡的主要品种' },
+  { name: '菜粉蝶 / 迁粉蝶', family: '粉蝶科', note: '易养殖，种群数量稳定' },
+  { name: '斐豹蛱蝶 / 金斑蛱蝶', family: '蛱蝶科', note: '色彩丰富，观赏性强' },
+];
+---
+<BaseLayout
+  title="蝴蝶主题馆"
+  description="贵州独家蝴蝶主题温室，常年恒温25-28℃，养殖凤蝶科、粉蝶科、蛱蝶科多个品种，配套标本工坊与科普展板。"
+>
+  <h1 class="mb-6 font-display text-3xl font-bold text-warm-800 sm:text-4xl">蝴蝶主题馆</h1>
+
+  <section class="overflow-hidden rounded-3lg shadow-card">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="bg-primary-700 text-white">
+          <th class="px-5 py-3.5 font-medium">品种</th>
+          <th class="px-5 py-3.5 font-medium">科属</th>
+          <th class="px-5 py-3.5 font-medium">特点</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {species.map((s) => (
+          <tr class="border-b border-cream-200 transition-colors hover:bg-cream-50">
+            <td class="px-5 py-3.5 font-medium text-warm-700">{s.name}</td>
+            <td class="px-5 py-3.5 text-warm-500">{s.family}</td>
+            <td class="px-5 py-3.5 text-warm-500">{s.note}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="mt-8 rounded-3lg bg-white p-8 shadow-card">
+    <h2 class="font-serif text-xl font-bold text-primary-600">温室环境</h2>
+    <ul class="mt-4 space-y-3">
+      {['恒温系统维持 25-28℃，湿度 60-80%', '种植柑橘、马兜铃等寄主植物供蝴蝶产卵', '配套蜜源植物保证成虫食物来源', '设有科普展板与标本工坊，可现场制作蝴蝶标本'].map((item) => (
+        <li class="flex items-start gap-2.5 text-warm-600">
+          <span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary-400"></span>
+          {item}
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

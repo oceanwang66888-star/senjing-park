@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+---
+<BaseLayout
+  title="联系我们"
+  description="预约咨询：企业团建、研学活动、婚庆摄影合作、簸箕宴团体用餐。"
+>
+  <h1 class="mb-8 font-display text-3xl font-bold text-warm-800 sm:text-4xl">联系我们</h1>
+
+  <div class="grid gap-8 lg:grid-cols-2">
+    <div class="space-y-6">
+      <div class="rounded-3lg bg-white p-8 shadow-card">
+        <h2 class="font-serif text-lg font-bold text-primary-600">联系信息</h2>
+        <div class="mt-4 space-y-3 text-warm-600">
+          <p class="flex items-start gap-2">
+            <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary-400"></span>
+            地址：{site.address}
+          </p>
+          <p class="flex items-start gap-2">
+            <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary-400"></span>
+            电话：{site.phone || '待补充'}
+          </p>
+          <p class="flex items-start gap-2">
+            <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary-400"></span>
+            开放时间：{site.openingHours}
+          </p>
+          <p class="flex items-start gap-2">
+            <span class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary-400"></span>
+            车程：贵阳市区{site.travelTimeFromGuiyang}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-3lg bg-white p-8 shadow-card">
+      <h2 class="font-serif text-lg font-bold text-primary-600">在线咨询</h2>
+      <form class="mt-4 space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-warm-500">姓名</label>
+          <input
+            type="text"
+            name="name"
+            required
+            class="mt-1.5 w-full rounded-2lg border border-cream-200 bg-cream-50 px-4 py-2.5 text-warm-700 placeholder:text-warm-300 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-100"
+            placeholder="请输入姓名"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-warm-500">联系电话</label>
+          <input
+            type="tel"
+            name="phone"
+            required
+            class="mt-1.5 w-full rounded-2lg border border-cream-200 bg-cream-50 px-4 py-2.5 text-warm-700 placeholder:text-warm-300 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-100"
+            placeholder="请输入联系电话"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-warm-500">咨询类型</label>
+          <select
+            name="type"
+            class="mt-1.5 w-full rounded-2lg border border-cream-200 bg-cream-50 px-4 py-2.5 text-warm-700 focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-100"
+          >
+            <option>企业团建</option>
+            <option>研学活动</option>
+            <option>婚庆摄影合作</option>
+            <option>簸箕宴团体用餐</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          class="w-full rounded-full bg-accent py-3 font-medium text-white shadow-soft transition-all duration-200 hover:bg-accent-600 hover:shadow-soft-md"
+        >
+          提交咨询
+        </button>
+      </form>
+    </div>
+  </div>
+</BaseLayout>

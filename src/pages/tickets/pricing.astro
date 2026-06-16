@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const pricing = [
+  { name: '单人门票', price: '29.9元起', note: '具体以官方实时公示为准' },
+  { name: '个人年卡', price: '399元/年', note: '全年无限次入园 + 9折课程 + 生日礼券' },
+  { name: '家庭年卡', price: '899元/年', note: '2大1小 + 9折 + 优先预约 + 专属活动' },
+  { name: '企业年卡', price: '面议', note: '团建专属优惠 + 优先档期 + 定制服务' },
+];
+---
+<BaseLayout
+  title="票务价格"
+  description="门票29.9元起，个人年卡399元/年，家庭年卡899元/年，企业年卡面议。"
+>
+  <h1 class="text-3xl font-bold text-primary">票务价格</h1>
+  <table class="mt-6 w-full overflow-hidden rounded-xl bg-white text-sm shadow">
+    <thead class="bg-primary text-white">
+      <tr><th class="p-3 text-left">票种</th><th class="p-3 text-left">价格</th><th class="p-3 text-left">说明</th></tr>
+    </thead>
+    <tbody>
+      {pricing.map((p) => (
+        <tr class="border-b"><td class="p-3 font-medium">{p.name}</td><td class="p-3">{p.price}</td><td class="p-3">{p.note}</td></tr>
+      ))}
+    </tbody>
+  </table>
+</BaseLayout>

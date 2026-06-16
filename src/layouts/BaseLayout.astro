@@ -1,0 +1,62 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import JsonLd from '@/components/JsonLd.astro';
+import { site } from '@/data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** 额外的 schema.org JSON-LD（FAQPage / Product / Event 等），全站通用的 LocalBusiness 已经默认注入 */
+  jsonLd?: Record<string, unknown>;
+}
+const { title, description, jsonLd } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  name: site.brandName,
+  alternateName: site.legalName,
+  description: site.tagline,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address,
+    addressRegion: '贵州省',
+    addressCountry: 'CN',
+  },
+  telephone: site.phone || undefined,
+  openingHours: site.openingHours,
+  url: Astro.site?.toString(),
+};
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | {site.brandName}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content={site.brandName} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <JsonLd data={localBusinessSchema} />
+    {jsonLd && <JsonLd data={jsonLd} />}
+  </head>
+  <body class="bg-cream-50 font-sans text-warm-800 antialiased">
+    <Header />
+    <main class="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

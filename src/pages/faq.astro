@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const faqEntries = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+  faqEntries.map(async (entry) => ({ entry, ...(await entry.render()) }))
+);
+
+const allQA = faqEntries.flatMap((entry) =>
+  entry.body
+    .split(/^### /m)
+    .filter(Boolean)
+    .map((block) => {
+      const [question, ...rest] = block.trim().split('\n\n');
+      return { question: question.trim(), answer: rest.join('\n\n').trim() };
+    })
+);
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allQA.map((qa) => ({
+    '@type': 'Question',
+    name: qa.question,
+    acceptedAnswer: { '@type': 'Answer', text: qa.answer },
+  })),
+};
+---
+<BaseLayout
+  title="常见问题 FAQ"
+  description="贵州森境自然教育公园（修文鑫鸿彬植物园）常见问题：地址交通、入园方式、自然教育课程、企业团建、婚庆摄影、簸箕宴餐饮、研学资质等。"
+  jsonLd={faqJsonLd}
+>
+  <h1 class="mb-10 font-display text-3xl font-bold text-warm-800 sm:text-4xl">常见问题</h1>
+
+  {rendered.map(({ entry, Content }) => (
+    <section class="mb-10">
+      <h2 class="mb-5 inline-block border-b-2 border-gold-400 pb-2 font-serif text-xl font-bold text-primary-700">
+        {entry.data.category}
+      </h2>
+      <div class="prose prose-h3:font-serif prose-h3:text-lg prose-h3:font-semibold prose-h3:text-primary-700 prose-p:text-warm-600 prose-p:leading-relaxed max-w-none">
+        <Content />
+      </div>
+    </section>
+  ))}
+</BaseLayout>
